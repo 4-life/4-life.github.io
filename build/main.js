@@ -144,20 +144,20 @@ var AboutPage = /** @class */ (function () {
     };
     AboutPage.prototype.getTasks = function () {
         var _this = this;
-        this.http.get("https://nwavetest.herokuapp.com/getalltasks").subscribe(function (data) {
+        this.http.get("http://151.236.221.48:3090/getalltasks").subscribe(function (data) {
             _this.tasks = data.tasks;
             __WEBPACK_IMPORTED_MODULE_3__app_tasks__["a" /* tasks */][0] = data.tasks.length;
         });
     };
     AboutPage.prototype.getInspectors = function () {
         var _this = this;
-        this.http.get("https://nwavetest.herokuapp.com/getallinspectors").subscribe(function (data) {
+        this.http.get("http://151.236.221.48:3090/getallinspectors").subscribe(function (data) {
             _this.inspectors = data.inspectors;
         });
     };
     AboutPage.prototype.addInspector = function () {
         var _this = this;
-        this.http.post("https://nwavetest.herokuapp.com/newinspector", {
+        this.http.post("http://151.236.221.48:3090/newinspector", {
             position: Object(__WEBPACK_IMPORTED_MODULE_4__app_inspectors__["a" /* getRandomPositionInMoscow */])()
         }).subscribe(function (data) {
             _this.getTasks();
@@ -185,7 +185,7 @@ var AboutPage = /** @class */ (function () {
             return false;
         }
         var removed = this.inspectors.splice(-1, 1)[0];
-        this.http.post("https://nwavetest.herokuapp.com/deleteinspector", {
+        this.http.post("http://151.236.221.48:3090/deleteinspector", {
             id: removed._id
         }).subscribe(function (data) {
             _this.getTasks();
@@ -212,7 +212,7 @@ var AboutPage = /** @class */ (function () {
     };
     AboutPage.prototype.remove10Minuts = function () {
         var _this = this;
-        this.http.get("https://nwavetest.herokuapp.com/time").subscribe(function (data) {
+        this.http.get("http://151.236.221.48:3090/time").subscribe(function (data) {
             _this.getTasks();
             _this.getInspectors();
         });
@@ -227,10 +227,9 @@ var AboutPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-about',template:/*ion-inline-start:"/home/mint/work/nwaveTest/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Tasks\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-segment style="width: 270px">\n    <span padding-right>Controllers number</span>\n    <button ion-button (click)="removeInspector()">-</button>\n    <ion-input type="number" value="{{inspectors.length}}" class="center"></ion-input>\n    <button ion-button (click)="addInspector()">+</button>\n  </ion-segment>\n\n  <h1>Tasks allocation</h1>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2></ion-col>\n      <ion-col col-10>\n        <button ion-button color="darkturquoise" (click)="remove10Minuts()">+10 min</button>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngFor="let inspector of inspectors; trackBy: identify">\n      <ion-col col-2 class="inspector-list">{{inspector.name}} #{{inspector.id_ins}}</ion-col>\n      <ion-col col-10 class="task-list">\n        <div *ngFor="let task of inspector.tasks" class="task-list_current" [ngStyle]="{\'width\': task.time/10 + \'px\'}" [ngClass]="{\'one-element\': inspector.tasks.length === 1}">\n          #{{getTaskById(task.id).id_task}}\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/mint/work/nwaveTest/src/pages/about/about.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */]])
     ], AboutPage);
     return AboutPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=about.js.map
@@ -277,7 +276,7 @@ var HomePage = /** @class */ (function () {
     }
     HomePage.prototype.getInspectors = function () {
         var _this = this;
-        this.http.get("https://nwavetest.herokuapp.com/getallinspectors").subscribe(function (data) {
+        this.http.get("http://151.236.221.48:3090/getallinspectors").subscribe(function (data) {
             console.log(data);
             _this.inspectors = data.inspectors;
             _this.deleteInspectors();
@@ -285,7 +284,7 @@ var HomePage = /** @class */ (function () {
         });
     };
     HomePage.prototype.getTasks = function () {
-        this.http.get("https://nwavetest.herokuapp.com/getalltasks").subscribe(function (data) {
+        this.http.get("http://151.236.221.48:3090/getalltasks").subscribe(function (data) {
             __WEBPACK_IMPORTED_MODULE_3__app_tasks__["a" /* tasks */][0] = data.tasks.length;
         });
     };
@@ -345,7 +344,7 @@ var HomePage = /** @class */ (function () {
             content: "Please wait..."
         });
         this.loader.present();
-        this.http.post("https://nwavetest.herokuapp.com/newtask", {
+        this.http.post("http://151.236.221.48:3090/newtask", {
             position: this.currentPosition
         }).subscribe(function (data) {
             _this.getTasks();
@@ -458,15 +457,16 @@ var HomePage = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
     ], HomePage.prototype, "mapElement", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/home/mint/work/nwaveTest/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Add task</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-start (click)="newTask()">\n        <ion-icon name="add"></ion-icon>\n        New task\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n</ion-content>\n'/*ion-inline-end:"/home/mint/work/nwaveTest/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _f || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=home.js.map
