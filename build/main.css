@@ -28014,6 +28014,10 @@ page-about .task-list_current:nth-child(3n+3) {
   background: dodgerblue;
 }
 
+page-about .task-list_current.one-element {
+  border-radius: 5px;
+}
+
 page-home #map {
   height: 100%;
 }
