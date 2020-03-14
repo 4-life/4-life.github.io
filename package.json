@@ -1,0 +1,58 @@
+{
+  "name": "clean-webpack-boilerplate",
+  "version": "1.0.0",
+  "author": "4-life <ovchinnikovpa@gmail.com>",
+  "description": "Clean webpack boilerplate",
+  "homepage": "https://github.com/4-life/clean-webpack-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/4-life/clean-webpack-boilerplate.git"
+  },
+  "issues": {
+    "url": "https://github.com/4-life/clean-webpack-boilerplate/issues",
+    "email": "ovchinnikovpa@gmail.com"
+  },
+  "main": "index.js",
+  "scripts": {
+    "prod": "webpack --config ./webpack/webpack.config.prod.js --mode production",
+    "start": "webpack-dev-server --config ./webpack/webpack.config.dev.js --mode development"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^9.1.3",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "caniuse-lite": "^1.0.30000839",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.1",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "stylelint-config-standard": "^18.2.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.2",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2"
+  },
+  "dependencies": {
+    "css-mqpacker": "^7.0.0",
+    "es6-promise": "^4.2.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "stylelint": "^13.2.1",
+    "terser-webpack-plugin": "^2.3.5"
+  }
+}

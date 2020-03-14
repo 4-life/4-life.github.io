@@ -1,0 +1,97 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  context: path.resolve(__dirname, '../src'),
+  entry: {
+    app: ['./app.js']
+  },
+  output: {
+    path: path.resolve(__dirname, '../dist')
+  },
+  resolveLoader: {
+    alias: {
+      'css-prefix-variables': path.resolve(__dirname, './lib/css-prefix-variables.js')
+    }
+  },
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['eslint-loader']
+      },
+      {
+        enforce: 'pre',
+        test: /\.css$/,
+        include: [
+          path.resolve(__dirname, '../src/fonts'),
+          path.resolve(__dirname, '../src/css')
+        ],
+        use: [{
+          loader: 'css-prefix-variables',
+          options: {
+            path: path.resolve(__dirname, '../src/css/variables.css')
+          }
+        }]
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.html$/,
+        use: [{
+          loader: 'html-loader',
+          options: {
+            minimize: true
+          }
+        }]
+      },
+      {
+        test: /\.(png|jpg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: 'images/[name].[md5:hash:hex:8].[ext]'
+          }
+        }]
+      },
+      {
+        test: /\.(woff|woff2|otf|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: 'fonts/[name].[md5:hash:hex:8].[ext]'
+          }
+        }]
+      },
+      {
+        test: /\.(mp4|ogg|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'assets/[name].[md5:hash:hex:8].[ext]'
+          }
+        }]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../src/templates/index.html'),
+      page: path.resolve(__dirname, '../src/templates/page.html'),
+      filename: 'index.html',
+      favicon: path.resolve(__dirname, '../src/images/favicon.png')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'page.html',
+      template: '../src/templates/page.html',
+      favicon: path.resolve(__dirname, '../src/images/favicon.png')
+    })
+  ]
+};

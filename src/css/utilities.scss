@@ -1,0 +1,33 @@
+/* Utilities classes like clearfix */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $body-bg-color;
+    font-family: $font-sans;
+    font-size: $body-font-size;
+    letter-spacing: 0.02rem;
+    line-height: 1.25;
+    color: $body-font-color;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: $anchor-font-color;
+    transition: color 200ms ease;
+
+    &:hover {
+        color: $body-font-color;
+    }
+}
+
+input,
+button {
+    font-family: $font-sans;
+}
+
+p {
+    margin: 0.5rem 0;
+}

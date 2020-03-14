@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "stable"
+script:
+  - npm i
+  - npm run prod
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: 8d7ec184785a4c9fbb96d775f07abed2fcaf131b
+  local_dir: dist
+  on:
+    branch: gh-pages
